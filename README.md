@@ -1,7 +1,6 @@
 # Checkpasswords
 
-A simple python program that checks passwords againts api.pwnedpasswords.com
-as documentet here: https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange
+A simple python program that checks passwords againts the free API as documentet here: https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange
 
 Padding is added according to this blog: https://www.troyhunt.com/enhancing-pwned-passwords-privacy-with-padding/
 
