@@ -24,8 +24,6 @@ Please feel free to copy, distribute and change this program in any way you like
 
 Example:
 
-Example:
-
     ./checkpasswords.py -p qwerty
     WARN: password found: <qwerty> times: 10713794 range: B1B37 api.hash: 73A05C0ED0176787A4F1574FF0075F7521E
 
