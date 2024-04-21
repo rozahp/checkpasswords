@@ -1,6 +1,6 @@
 # Checkpasswords
 
-I simple pythonprogram that checks passwords againts https://api.pwnedpasswords.com/range
+A simple pythonprogram that checks passwords againts https://api.pwnedpasswords.com/range
 
 ## AUTHOR 
 
