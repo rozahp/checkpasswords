@@ -1,7 +1,6 @@
 # Checkpasswords
 
-A simple pythonprogram that checks passwords againts https://api.pwnedpasswords.com/range
-
+A simple pythonprogram that checks passwords againts api.pwnedpasswords.com
 as documentet here: https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange
 
 ## AUTHOR 
