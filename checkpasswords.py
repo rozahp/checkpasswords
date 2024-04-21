@@ -27,7 +27,7 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 ##====================================
-## 
+##
 ## Parse arguments from commandline
 ##
 ##====================================
@@ -45,6 +45,8 @@ def parseArguments():
         help='Plain Text Password to check for [Default: %(default)s]')
     parser.add_argument('-f','--filename', action='store', type=str, default=False, 
         help='Filename of file with passwords  [Default: %(default)s]')    
+    parser.add_argument('-n','--nopad', action='store_false', default=False, 
+        help='Remove padding from result and show real numbers [Default: %(default)s]')    
     parser.add_argument('-v','--verbose', action='store_true', default=False, 
         help='Verbose mode [Default: %(default)s]')
 
@@ -98,17 +100,22 @@ def hashpasswords(passwords):
 ## Check Hashes
 ##
 ##===========================
-def checkhashes(hashlist):
+def checkhashes(hashlist, nopad):
     
     for h,p in hashlist:
         pre=h[:5]
         suf=h[5:]
-        res=requests.get('https://api.pwnedpasswords.com/range/'+str(pre))
+        if nopad:
+            headers=""
+        else:
+            headers={"Add-Padding": "true"}
+        res=requests.get('https://api.pwnedpasswords.com/range/'+str(pre), headers=headers)
         if res.status_code==200:
             logger.debug("range: "+str(pre)+" suffix: "+str(suf)+" pass: "+str(p))
             found=res.text.find(suf)
             if found>0:
                 for f in res.text.split():
+                    print("f:",f)
                     rtimes=f.split(':')[1]
                     rhash=f.split(':')[0]
                     if suf in f:
@@ -123,7 +130,7 @@ def checkhashes(hashlist):
 ##=======================
 if __name__ == '__main__':
 
-    options=parseArguments()    
+    options=parseArguments()
 
     if options.verbose:
         logger.setLevel(logging.DEBUG)
@@ -148,7 +155,7 @@ if __name__ == '__main__':
     ## Check hashes
     ##
     if len(hashes)!=0:
-        checkhashes(hashes)
+        checkhashes(hashes, options.nopad)
     else:
         print("ERR:")
 
