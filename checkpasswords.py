@@ -115,7 +115,6 @@ def checkhashes(hashlist, nopad):
             found=res.text.find(suf)
             if found>0:
                 for f in res.text.split():
-                    print("f:",f)
                     rtimes=f.split(':')[1]
                     rhash=f.split(':')[0]
                     if suf in f:
