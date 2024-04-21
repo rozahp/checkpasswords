@@ -41,11 +41,11 @@ def parseArguments():
     ##
 
     parser.add_argument('-p','--password', action='store', type=str, default=False, 
-        help='Plain Text Password to check for [Default: %(default)s]')
+        help='Plain text password [Default: %(default)s]')
     parser.add_argument('-f','--filename', action='store', type=str, default=False, 
-        help='Filename of file with passwords  [Default: %(default)s]')    
+        help='File with passwords [Default: %(default)s]')    
     parser.add_argument('-n','--nopad', action='store_false', default=False, 
-        help='Remove padding from result and show real numbers [Default: %(default)s]')    
+        help='Remove padding [Default: %(default)s]')    
     parser.add_argument('-v','--verbose', action='store_true', default=False, 
         help='Verbose mode [Default: %(default)s]')
 
@@ -59,7 +59,7 @@ def parseArguments():
     ## Error checking
     ##
     if options.password==False and options.filename==False:
-        logger.error("No password in argument!")
+        logger.error("No password(s) in argument!")
         exit(0)
 
     return options
@@ -155,7 +155,7 @@ if __name__ == '__main__':
     if len(hashes)!=0:
         checkhashes(hashes, options.nopad)
     else:
-        print("ERR:")
+        logger.error("No hashes to check for!")
 
 ##
 ## This file has not been truncated
