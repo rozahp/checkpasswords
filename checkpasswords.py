@@ -9,7 +9,6 @@
 import logging
 import requests
 import hashlib
-import json
 import argparse
 
 ##
