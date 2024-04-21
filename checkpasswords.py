@@ -42,7 +42,7 @@ def parseArguments():
 
     parser.add_argument('-p','--password', action='store', type=str, default=False, 
         help='Plain text password [Default: %(default)s]')
-    parser.add_argument('-f','--filename', action='store', type=str, default=False, 
+    parser.add_argument('-f','--filename', action='store', nargs='*', default=False, 
         help='File with passwords [Default: %(default)s]')    
     parser.add_argument('-n','--nopad', action='store_false', default=False, 
         help='Remove padding [Default: %(default)s]')    
@@ -72,10 +72,14 @@ def parseArguments():
 def readfromfile(files):
     passwords=[]
     for filename in files:
-        with open(filename) as fp:
-            for p in fp.readlines():
-                p=p.strip()
-                passwords.append(p)
+        try:
+            with open(filename) as fp:
+                for p in fp.readlines():
+                    p=p.strip()
+                    passwords.append(p)
+        except Exception as orsak:
+            logger.error(orsak)
+            exit(0)
     return passwords
 
 ##===========================
